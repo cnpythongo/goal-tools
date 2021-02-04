@@ -23,7 +23,7 @@ var (
 				},
 				cli.StringFlag{
 					Name:  "app,a",
-					Usage: "app name",
+					Usage: "app service name for project",
 				},
 			},
 			Action: start.NewProject,
