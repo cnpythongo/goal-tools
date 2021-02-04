@@ -47,14 +47,9 @@ func clone(targetDir string) error {
 	if err != nil {
 		return err
 	}
-	fmt.Printf("cd %s\n", targetDir)
-	cmd = exec.Command("/bin/sh", "-c", "cd", targetDir, "")
-	err = cmd.Run()
-	if err != nil {
-		return err
-	}
-	fmt.Print("rm -rf .git\n")
-	cmd = exec.Command("/bin/sh","-c", "rm", "-rf", ".git")
+
+	fmt.Printf("remove project git dir: %s/.git", targetDir)
+	cmd = exec.Command("/bin/bash", "-c", fmt.Sprintf("rm -rf %s/.git", targetDir))
 	err = cmd.Run()
 	if err != nil {
 		return err
