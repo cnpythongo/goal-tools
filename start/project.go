@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 )
 
-const GoalHelperRepo = "https://github.com/cnpythongo/goal-helper.git"
+const GoalHelperRepo = "https://github.com/cnpythongo/goal-http-template.git"
 
 func NewProject(c *cli.Context) error {
 	args := c.Args()
