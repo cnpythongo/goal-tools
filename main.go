@@ -15,7 +15,7 @@ var (
 		// goal-tools startproject {projectname}
 		{
 			Name:   "startproject",
-			Usage:  "create start project from github.com/cnpythongo/goal-helper template",
+			Usage:  "create start project from github.com/cnpythongo/goal-http-template",
 			Flags: []cli.Flag{
 				cli.StringFlag{
 					Name:  "dir,d",
