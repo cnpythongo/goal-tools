@@ -7,8 +7,10 @@ import (
 	"crypto/sha1"
 	"encoding/hex"
 	"fmt"
+	"github.com/google/uuid"
 	"golang.org/x/crypto/pbkdf2"
 	"math/big"
+	"strings"
 )
 
 const NormalLetters string = "abcdefghjkmnopqrstuvwxyzABCDEFGHJKMNOPQRSTUVWXYZ123456789"
@@ -55,4 +57,10 @@ func GeneratePassword(password string) (string, string) {
 func VerifyPassword(password, hashPwd, salt string) bool {
 	vp := encodePassword(password, salt)
 	return vp == hashPwd
+}
+
+// UUID 生成不带中划线UUID
+func UUID() string {
+	uuidStr := uuid.New().String()
+	return strings.ReplaceAll(uuidStr, "-", "")
 }
