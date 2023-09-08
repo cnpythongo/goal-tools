@@ -15,7 +15,7 @@ import (
 
 const NormalLetters string = "abcdefghjkmnopqrstuvwxyzABCDEFGHJKMNOPQRSTUVWXYZ123456789"
 
-// 生成随机字符串，默认长度8
+// RandomStr 生成随机字符串，默认长度8
 func RandomStr(i ...int) string {
 	num := 8
 	if len(i) > 0 {
@@ -32,7 +32,7 @@ func RandomStr(i ...int) string {
 	return container
 }
 
-// 获取字符串的md5值
+// Md5 获取字符串的md5值
 func Md5(str string) string {
 	data := []byte(str)
 	has := md5.Sum(data)
@@ -40,20 +40,20 @@ func Md5(str string) string {
 	return md5str
 }
 
-// 生成密码加密串
+// encodePassword 生成密码加密串
 func encodePassword(password, salt string) string {
 	b := pbkdf2.Key([]byte(password), []byte(salt), 1000, 24, sha1.New)
 	return hex.EncodeToString(b)
 }
 
-// 生成密码串和盐
+// GeneratePassword 生成密码串和盐
 func GeneratePassword(password string) (string, string) {
 	salt := RandomStr()
 	hashPwd := encodePassword(password, salt)
 	return hashPwd, salt
 }
 
-// 校验密码
+// VerifyPassword 校验密码
 func VerifyPassword(password, hashPwd, salt string) bool {
 	vp := encodePassword(password, salt)
 	return vp == hashPwd
