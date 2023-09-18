@@ -15,21 +15,37 @@ import (
 
 const NormalLetters string = "abcdefghjkmnopqrstuvwxyzABCDEFGHJKMNOPQRSTUVWXYZ123456789"
 
+const NumberLetters string = "0123456789"
+
+// _randomStr 生成随机字符串
+func _randomStr(letters string, i int) string {
+	var container string
+	b := bytes.NewBufferString(letters)
+	length := b.Len()
+	bigInt := big.NewInt(int64(length))
+	for x := 0; x < i; x++ {
+		randomInt, _ := rand.Int(rand.Reader, bigInt)
+		container += string(NormalLetters[randomInt.Int64()])
+	}
+	return container
+}
+
 // RandomStr 生成随机字符串，默认长度8
 func RandomStr(i ...int) string {
 	num := 8
 	if len(i) > 0 {
 		num = i[0]
 	}
-	var container string
-	b := bytes.NewBufferString(NormalLetters)
-	length := b.Len()
-	bigInt := big.NewInt(int64(length))
-	for i := 0; i < num; i++ {
-		randomInt, _ := rand.Int(rand.Reader, bigInt)
-		container += string(NormalLetters[randomInt.Int64()])
+	return _randomStr(NormalLetters, num)
+}
+
+// RandomNumberStr 生成随机数字字符串，默认长度6
+func RandomNumberStr(i ...int) string {
+	num := 6
+	if len(i) > 0 {
+		num = i[0]
 	}
-	return container
+	return _randomStr(NumberLetters, num)
 }
 
 // Md5 获取字符串的md5值
