@@ -48,5 +48,5 @@ func (c *captchaRedisStore) Get(id string, clear bool) string {
 }
 
 func (c *captchaRedisStore) Verify(id, answer string, clear bool) (match bool) {
-	return c.Get(c.keyPrefix+id, clear) == answer
+	return c.Get(id, clear) == answer
 }
