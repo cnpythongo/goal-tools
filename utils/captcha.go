@@ -83,7 +83,7 @@ func (c *Captcha) GenerateMathImage() (code string, b64 string, err error) {
 
 func (c *Captcha) generate(driver base64Captcha.Driver) (code string, b64s string, err error) {
 	nc := base64Captcha.NewCaptcha(driver, c.store)
-	code, b64s, err = nc.Generate()
+	code, b64s, _, err = nc.Generate()
 	if err != nil {
 		return "", "", err
 	}
